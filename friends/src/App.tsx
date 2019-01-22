@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import FriendsList from './components/FriendsList';
+import FriendForm from './components/FriendForm';
+import { Route } from 'react-router-dom';
 
 // This App.tsx uses TypeScript.
 // Run `yarn add typescript @types/node @types/react @types/react-dom @types/jest` to install.
@@ -85,14 +87,11 @@ class App extends Component<{}, MyState> {
   render() {
     return (
       <div className="App">
-        <FriendsList handleDeleteFriend={this.handleDeleteFriend} friends={this.state.friends}/>
-        <form onSubmit={this.handleAddFriend}>
-          <input type="text" placeholder="id"/>
-          <input type="text" placeholder="name"></input>
-          <input type="number" placeholder="age"></input>
-          <input type="text" placeholder="email"></input>
-          <input type="submit" value="Add or Update Friend"></input>
-        </form>
+        <Route exact path='/' render={(props: any) => <FriendsList 
+          handleDeleteFriend={this.handleDeleteFriend} friends={this.state.friends} {...props}/>}/>
+        <Route path='/form' render={ (props: any) => <FriendForm handleAddFriend={this.handleAddFriend} {...props}/>}/>
+        {/* <FriendsList handleDeleteFriend={this.handleDeleteFriend} friends={this.state.friends}/>
+        <FriendForm handleAddFriend={this.handleAddFriend} /> */}
       </div>
     );
   }

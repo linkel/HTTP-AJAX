@@ -3,7 +3,10 @@ import Friend from './Friend';
 
 const FriendsList = (props) => {
     return (
-        props.friends.map( (friend) => <Friend handleDeleteFriend={props.handleDeleteFriend} key={friend.id} friend={friend}/> )
+        <div>
+        {props.friends.map( (friend) => <Friend handleDeleteFriend={props.handleDeleteFriend} key={friend.id} friend={friend}/> )}
+        <a href="/form">Go to Friends Form</a>
+        </div>
     )
 }
 
