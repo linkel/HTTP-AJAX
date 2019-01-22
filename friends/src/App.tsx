@@ -38,9 +38,9 @@ class App extends Component<{}, MyState> {
     }
 
     let friendObj: friendObject = { // don't need to specify new IDs since those are created in server.js
-    name : event.target[1].value,
-    age : event.target[2].value,
-    email : event.target[3].value,
+      name : event.target[1].value,
+      age : event.target[2].value,
+      email : event.target[3].value,
     }
 
     if (event.target[0].value) {
@@ -68,13 +68,24 @@ class App extends Component<{}, MyState> {
           alert("Please provide all three fields: name, age, and email.");
         }
       }
-
-
   }
+  
+  handleDeleteFriend = (friend_id:any) => {
+    console.log(friend_id)
+    axios
+      .delete(`http://localhost:5000/friends/${friend_id}`)
+      .then(response => {
+        this.setState({friends: response.data})
+      })
+      .catch(err => {
+        console.log(err)
+      });
+  }
+
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friends}/>
+        <FriendsList handleDeleteFriend={this.handleDeleteFriend} friends={this.state.friends}/>
         <form onSubmit={this.handleAddFriend}>
           <input type="text" placeholder="id"/>
           <input type="text" placeholder="name"></input>
