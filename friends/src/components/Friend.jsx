@@ -8,7 +8,7 @@ const FriendWrapper = styled.div`
 const Friend = (props) => {
     return (
         <FriendWrapper>
-            {props.friend.name}, who is {props.friend.age} years old, can be reached at {props.friend.email}.
+            ID {props.friend.id}: {props.friend.name}, who is {props.friend.age} years old, can be reached at {props.friend.email}.
         </FriendWrapper>
     )
 }
